@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Shop" Height="450" Width="800">
     <Grid>
-        <Frame Name="frmMain"/>
+        <Frame Name="frmMain" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Window>

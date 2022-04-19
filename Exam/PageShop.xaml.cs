@@ -31,19 +31,19 @@ namespace Exam
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
             var selectedList = LVShop.SelectedItems;
-            TBCount.Text = "  " + selectedList.Count;
+            TBCount.Text = "  " + selectedList.Count; //подсчет количества книг
             int totalCost = 0;
             foreach (Exam01 n in selectedList)
             {
-                totalCost += (int)n.Cost;
+                totalCost += (int)n.Cost;     //подсчет стоимости
                 BooksCart.Add(n);
             }
-            TBCost.Text = "  " + totalCost;
+            TBCost.Text = "  " + totalCost; //вывод стоимости покупки
         }
 
         private void BTPer_Click(object sender, RoutedEventArgs e)
         {
-            WindowCart cart = new WindowCart(BooksCart);
+            WindowCart cart = new WindowCart(BooksCart);  //переход на окно корзины
             cart.ShowDialog();
         }
     }

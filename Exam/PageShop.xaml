@@ -9,17 +9,17 @@
       Title="PageShop">
 
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Right">
             
             <StackPanel Orientation="Horizontal">
-                <Button Content="Добавить в корзину" Name="BTAdd" Width="150" Height="25" Click="BTAdd_Click" Margin="1"/>
-                <Button x:Name="BTCart" Content="Корзина"  Width="150" Height="25" Click="BTPer_Click" Margin="1"/>
+                <Button Content="Добавить в корзину" Name="BTAdd" Width="150" Height="25" Click="BTAdd_Click" Margin="1" Background="White" Foreground="Fuchsia"/>
+                <Button x:Name="BTCart" Content="Посмотреть содержание корзины"  Width="250" Height="25" Click="BTPer_Click" Margin="1" Background="White" Foreground="Fuchsia"/>
             </StackPanel>
 
             <StackPanel>

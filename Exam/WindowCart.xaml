@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="WindowCart" Height="450" Width="800">
     <Grid>
-        <ListView Grid.Row="1" Name="LVKList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Multiple">
+      
+
+        <ListView Grid.Row="1" Name="LVKList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Multiple" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -29,6 +31,7 @@
                                 <TextBlock Text="Цена: "></TextBlock>
                                 <TextBlock Text="{Binding Cost}"></TextBlock>
                             </StackPanel>
+                            <Button Content="Оформить заказ" Name="BTAdd" Width="150" Height="25" Margin="1" Background="White" Foreground="Fuchsia"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
