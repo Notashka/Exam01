@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Exam01">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountInShop" Type="int" />
+          <Property Name="CountInStock" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Art" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cost" Type="int" />
+        </EntityType>
+        <EntityType Name="ExamCost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="int" />
+          <Property Name="IdBook" Type="int" />
+        </EntityType>
+        <Association Name="FK_ExamCost_Exam01">
+          <End Role="Exam01" Type="Self.Exam01" Multiplicity="0..1" />
+          <End Role="ExamCost" Type="Self.ExamCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam01">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ExamCost">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Exam01" EntityType="Self.Exam01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamCost" EntityType="Self.ExamCost" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ExamCost_Exam01" Association="Self.FK_ExamCost_Exam01">
+            <End Role="Exam01" EntitySet="Exam01" />
+            <End Role="ExamCost" EntitySet="ExamCost" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Exam01">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountInShop" Type="Int32" />
+          <Property Name="CountInStock" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Art" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Int32" />
+          <NavigationProperty Name="ExamCost" Relationship="Model.FK_ExamCost_Exam01" FromRole="Exam01" ToRole="ExamCost" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Exam01" EntityType="Self.Exam01" />
+          <EntitySet Name="ExamCost" EntityType="Model.ExamCost" />
+          <AssociationSet Name="FK_ExamCost_Exam01" Association="Model.FK_ExamCost_Exam01">
+            <End Role="Exam01" EntitySet="Exam01" />
+            <End Role="ExamCost" EntitySet="ExamCost" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ExamCost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Int32" />
+          <Property Name="IdBook" Type="Int32" />
+          <NavigationProperty Name="Exam01" Relationship="Model.FK_ExamCost_Exam01" FromRole="ExamCost" ToRole="Exam01" />
+        </EntityType>
+        <Association Name="FK_ExamCost_Exam01">
+          <End Type="Model.Exam01" Role="Exam01" Multiplicity="0..1" />
+          <End Type="Model.ExamCost" Role="ExamCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam01">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ExamCost">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Exam01">
+            <EntityTypeMapping TypeName="Model.Exam01">
+              <MappingFragment StoreEntitySet="Exam01">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="CountInShop" ColumnName="CountInShop" />
+                <ScalarProperty Name="CountInStock" ColumnName="CountInStock" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Art" ColumnName="Art" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamCost">
+            <EntityTypeMapping TypeName="Model.ExamCost">
+              <MappingFragment StoreEntitySet="ExamCost">
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
